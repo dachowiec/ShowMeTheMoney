@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8815C318-6A07-4B98-AFFC-0978EE0DCC2B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{AE200222-8A09-4F8B-B628-B3B3B5283192}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShowMeTheMoney</RootNamespace>
-    <AssemblyName>ShowMeTheMoney</AssemblyName>
+    <RootNamespace>ShowMeTheMoney.Tests</RootNamespace>
+    <AssemblyName>ShowMeTheMoney.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,14 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transfers\ITransferReader.cs" />
-    <Compile Include="Transfers\Readers\MBankTransferReader.cs" />
-    <Compile Include="Transfers\Transfer.cs" />
+    <Compile Include="ResourceFileLoader.cs" />
+    <Compile Include="Transfers\Readers\MBankTransferReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShowMeTheMoney\ShowMeTheMoney.csproj">
+      <Project>{8815C318-6A07-4B98-AFFC-0978EE0DCC2B}</Project>
+      <Name>ShowMeTheMoney</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Transfers\Readers\res\mbank.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -61,8 +67,19 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5'">
       <ItemGroup>
-        <Reference Include="CsvHelper">
-          <HintPath>..\packages\CsvHelper\lib\net40-client\CsvHelper.dll</HintPath>
+        <Reference Include="Fixie">
+          <HintPath>..\packages\Fixie\lib\net45\Fixie.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5'">
+      <ItemGroup>
+        <Reference Include="Should">
+          <HintPath>..\packages\Should\lib\Should.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
