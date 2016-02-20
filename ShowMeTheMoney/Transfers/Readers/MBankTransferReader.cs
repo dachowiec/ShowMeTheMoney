@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 namespace ShowMeTheMoney.Transfers.Readers
 {
@@ -26,34 +26,50 @@ namespace ShowMeTheMoney.Transfers.Readers
 
 		public IList<Transfer> Read()
 		{
-			var csvReader = new CsvReader();
-			return new List<Transfer>();
-			
+			stream.Position = 0;
 
-			//while (csvReader.Read())
-			//{
-			//	if (csvReader.CurrentRecord == null)
-			//		yield break;
+			var transfers = new List<Transfer>();
+			var csvReader = new CsvReader(new StringReader(GetContent()), GetConfiguration());
 
-			//	if (string.IsNullOrEmpty(csvReader.GetField<string>(0)))
-			//		break;
+			while (csvReader.Read())
+			{
+				if (string.IsNullOrEmpty(csvReader.GetField<string>(0)))
+					break;
 
-			//	yield return new Transfer
-			//	{
-			//		Date = csvReader.GetField<DateTime>(0)
-			//	};
+				transfers.Add(new Transfer
+				{
+					Date = csvReader.GetField<DateTime>(0),
+					Amount = decimal.Parse(csvReader.GetField<string>(6)),
+					Title = csvReader.GetField<string>(3),
+					RecipientAccountNumber = GetRecipientAccountNumber(csvReader)
+				});
+			}
 
-			//}
+			return transfers;
 		}
 
-		private void SkipHeader()
+		private static string GetRecipientAccountNumber(CsvReader csvReader)
+		{
+			return csvReader.GetField<string>(5).Trim(new[] { '\'' });
+		}
+
+		private string GetContent()
+		{
+			var reader = new StreamReader(stream);
+
+			SkipHeader(reader);
+
+			return reader.ReadToEnd();
+		}
+
+		private static void SkipHeader(StreamReader reader)
 		{
 			var toSkip = 38;
 			while (toSkip-- > 0 && reader.ReadLine() != null)
-			{ }
+			{
+			}
 		}
 
-		private readonly TextReader reader;
-		private Stream stream;
+		private readonly Stream stream;
 	}
 }

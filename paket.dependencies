@@ -3,5 +3,5 @@ source https://www.nuget.org/api/v2
 
 nuget Fixie
 nuget FakeItEasy
-nuget Should
+nuget FluentAssertions
 nuget CsvHelper
