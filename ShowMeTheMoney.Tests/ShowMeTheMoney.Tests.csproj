@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceFileLoader.cs" />
+    <Compile Include="Transfers\Readers\DBankTransferReaderTests.cs" />
     <Compile Include="Transfers\Readers\MBankTransferReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Transfers\Readers\res\mbank.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Transfers\Readers\res\deutsche_bank.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
