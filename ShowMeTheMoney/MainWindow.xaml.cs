@@ -10,6 +10,7 @@ namespace ShowMeTheMoney
 		public MainWindow()
 		{
 			InitializeComponent();
+			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 		}
 	}
 }
