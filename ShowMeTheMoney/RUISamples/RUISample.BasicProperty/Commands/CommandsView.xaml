@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="RUISample.BasicProperty.Commands.CommandsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        >
+	<xctk:BusyIndicator x:Name="busyIndicator">
+		<Grid>
+			<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+			<Button x:Name="messageButton">Klik</Button>
+		<TextBox Grid.Row="1" x:Name="YourName"></TextBox>
+		<Button Grid.Row="2" x:Name="helloButton">Say hi hello</Button>
+		<Button Grid.Row="3" x:Name="adviceButton">Porada</Button>
+		<Button Grid.Row="4" x:Name="yoloButton">yolo</Button>
+			<Button Grid.Row="5" x:Name="longRunnningButton">Wolny guzik</Button>
+    </Grid>
+	</xctk:BusyIndicator>
+</UserControl>

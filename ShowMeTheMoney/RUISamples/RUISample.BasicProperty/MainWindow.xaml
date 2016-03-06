@@ -1,0 +1,23 @@
+﻿<Window x:Class="RUISample.BasicProperty.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:basicProperty="clr-namespace:RUISample.BasicProperty.BasicProperty"
+        xmlns:bindings="clr-namespace:RUISample.BasicProperty.Bindings"
+        xmlns:commands="clr-namespace:RUISample.BasicProperty.Commands"
+        xmlns:routing="clr-namespace:RUISample.Routing"
+        Title="MainWindow" Height="350" Width="525">
+    <TabControl>
+			<TabItem Header="BasicProperty">
+				<basicProperty:BasicProperty></basicProperty:BasicProperty>
+			</TabItem>
+			<TabItem Header="Bindings">
+				<bindings:BindingsView></bindings:BindingsView>
+			</TabItem>
+			<TabItem Header="Commands">
+				<commands:CommandsView></commands:CommandsView>
+			</TabItem>
+			<TabItem Header="Routing">
+				<routing:RoutingView></routing:RoutingView>
+			</TabItem>
+		</TabControl>
+</Window>

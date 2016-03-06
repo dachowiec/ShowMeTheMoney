@@ -1,8 +1,0 @@
-FRAMEWORK: NET45
-NUGET
-  remote: https://www.nuget.org/api/v2
-  specs:
-    CsvHelper (2.13.5)
-    FakeItEasy (1.25.3)
-    Fixie (1.0.0.41)
-    FluentAssertions (4.2.2)

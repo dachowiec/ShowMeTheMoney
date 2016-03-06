@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RUISamples", "RUISample.BasicProperty\RUISamples.csproj", "{A5508F86-BB16-48C5-8CA8-3D78EADB491F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RUISamples.Winforms", "RUISamples.Winforms\RUISamples.Winforms.csproj", "{AE3EE602-960D-40DA-9E29-F8AB164C37C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5508F86-BB16-48C5-8CA8-3D78EADB491F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5508F86-BB16-48C5-8CA8-3D78EADB491F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5508F86-BB16-48C5-8CA8-3D78EADB491F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5508F86-BB16-48C5-8CA8-3D78EADB491F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE3EE602-960D-40DA-9E29-F8AB164C37C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE3EE602-960D-40DA-9E29-F8AB164C37C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE3EE602-960D-40DA-9E29-F8AB164C37C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE3EE602-960D-40DA-9E29-F8AB164C37C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
