@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using CsvHelper;
 using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
 
 namespace ShowMeTheMoney.Transfers.Readers
 {

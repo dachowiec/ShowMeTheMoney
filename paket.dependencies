@@ -1,7 +1,9 @@
-framework: net45
+framework: net451
 source https://www.nuget.org/api/v2
 
 nuget Fixie
 nuget FakeItEasy
 nuget FluentAssertions
 nuget CsvHelper
+nuget ReactiveUI-core
+nuget Autofac

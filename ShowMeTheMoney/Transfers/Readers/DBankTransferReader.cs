@@ -15,7 +15,7 @@ namespace ShowMeTheMoney.Transfers.Readers
 
 		public IList<Transfer> Read()
 		{
-			var reader = new CsvReader(new StreamReader(stream),GetConfiguration());
+			var reader = new CsvReader(new StreamReader(stream), GetConfiguration());
 			var transfers = new List<Transfer>();
 
 			while (reader.Read())
