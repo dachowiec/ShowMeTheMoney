@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using System.Windows;
+using Microsoft.Win32;
+using ReactiveUI;
 using ShowMeTheMoney.ViewModels;
 using Splat;
 
@@ -16,6 +18,10 @@ namespace ShowMeTheMoney.Views
 			ViewModel = shellViewModel ?? Locator.CurrentMutable.GetService<SelectTransactionReaderDialogViewModel>();
 
 			this.OneWayBind(ViewModel, vm => vm.Readers, v => v.readers.ItemsSource);
+			this.Bind(ViewModel, vm => vm.SelectedReader, v => v.readers.SelectedItem);
+			this.Bind(ViewModel, vm => vm.SelectedFile, v => v.selectedFile.Text);
+			this.BindCommand(ViewModel, vm => vm.ReadTransactions, v => v.readTransactions);
+
 		}
 
 		object IViewFor.ViewModel
@@ -25,5 +31,14 @@ namespace ShowMeTheMoney.Views
 		}
 
 		public SelectTransactionReaderDialogViewModel ViewModel { get; set; }
+
+		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+		{
+			var filedialog =new OpenFileDialog();
+			if (filedialog.ShowDialog().GetValueOrDefault())
+			{
+				ViewModel.SelectedFile = filedialog.FileName;
+			}
+		}
 	}
 }
