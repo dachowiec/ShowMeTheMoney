@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Caliburn.Micro;
 using ReactiveUI;
 using ShowMeTheMoney.Transfers;
 using ShowMeTheMoney.Transfers.Factories;
@@ -28,6 +29,7 @@ namespace ShowMeTheMoney
 			Locator.CurrentMutable.Register(() => new MBankTransferReaderFactory(), typeof(ITransferReaderFactory));
 			Locator.CurrentMutable.Register(() => new CsvReaderTransactionDialog(), typeof(CsvReaderTransactionDialog));
 			Locator.CurrentMutable.Register(() => new SelectTransactionReaderDialogViewModel(), typeof(SelectTransactionReaderDialogViewModel));
+			Locator.CurrentMutable.RegisterConstant(new EventAggregator(), typeof(IEventAggregator));
 		}
 
 		private static void RegisterExceptionHandlers()

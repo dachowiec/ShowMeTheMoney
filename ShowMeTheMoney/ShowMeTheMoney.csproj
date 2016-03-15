@@ -58,6 +58,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Other\EventAggregator.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,6 +67,7 @@
     <Compile Include="Transfers\Factories\DbBankTransferReaderFactory.cs" />
     <Compile Include="Transfers\Factories\MBankTransferReaderFactory.cs" />
     <Compile Include="Transfers\ITransferReaderFactory.cs" />
+    <Compile Include="ViewModels\Events\NewTransfers.cs" />
     <Compile Include="ViewModels\SelectTransactionReaderDialogViewModel.cs" />
     <Compile Include="Views\CsvReaderTransactionDialog.xaml.cs">
       <DependentUpon>CsvReaderTransactionDialog.xaml</DependentUpon>

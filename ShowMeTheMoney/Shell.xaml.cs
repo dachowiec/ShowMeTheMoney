@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Windows;
+using Caliburn.Micro;
 using ReactiveUI;
 using ShowMeTheMoney.ViewModels;
+using ShowMeTheMoney.ViewModels.Events;
+using Splat;
 
 namespace ShowMeTheMoney
 {
 	/// <summary>
 	/// Interaction logic for Shell.xaml
 	/// </summary>
-	public partial class Shell : IViewFor<ShellViewModel>, IScreen
+	public partial class Shell : IViewFor<ShellViewModel>, IScreen, IHandle<NewTransfers>
 	{
+		private IEventAggregator _eventAggregator;
+
 		public Shell()
 		{
+			_eventAggregator = Locator.Current.GetService<IEventAggregator>();
+			_eventAggregator.Subscribe(this);
 			InitializeComponent();
 			ViewModel = new ShellViewModel();
 
@@ -31,5 +38,10 @@ namespace ShowMeTheMoney
 		public ShellViewModel ViewModel { get; set; }
 
 		public RoutingState Router { get; private set; }
+
+		public void Handle(NewTransfers message)
+		{
+			MessageBox.Show("Tak tak !!!");
+		}
 	}
 }
