@@ -16,12 +16,11 @@ namespace ShowMeTheMoney.Views
 			InitializeComponent();
 
 			ViewModel = shellViewModel ?? Locator.CurrentMutable.GetService<SelectTransactionReaderDialogViewModel>();
-
+			ViewModel.RequestClose += (sender, args) => this.Close();
 			this.OneWayBind(ViewModel, vm => vm.Readers, v => v.readers.ItemsSource);
 			this.Bind(ViewModel, vm => vm.SelectedReader, v => v.readers.SelectedItem);
 			this.Bind(ViewModel, vm => vm.SelectedFile, v => v.selectedFile.Text);
 			this.BindCommand(ViewModel, vm => vm.ReadTransactions, v => v.readTransactions);
-
 		}
 
 		object IViewFor.ViewModel

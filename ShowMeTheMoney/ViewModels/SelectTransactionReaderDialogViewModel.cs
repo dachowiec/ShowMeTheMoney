@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Windows;
 using Caliburn.Micro;
 using ReactiveUI;
 using ShowMeTheMoney.Transfers;
@@ -29,15 +28,27 @@ namespace ShowMeTheMoney.ViewModels
 					.ToCommand();
 					
 
-			ReadTransactions.Subscribe(_ => EventAggregator.Publish(new NewTransfers
+			ReadTransactions.Subscribe(_ =>
 			{
-				Transfers = SelectedReader.Create(File.OpenRead(SelectedFile)).Read()
-			},action => action()));
+				EventAggregator.Publish(new NewTransfers
+				{
+					Transfers = SelectedReader.Create(File.OpenRead(SelectedFile)).Read()
+				}, action => action());
+				RaiseRequestClose();
+			});
 		}
 
 		public IEventAggregator EventAggregator { get; private set; }
 
 		public ReadOnlyCollection<ITransferReaderFactory> Readers { get; protected set; }
+
+		private void RaiseRequestClose()
+		{
+			if(RequestClose != null)
+				RequestClose(this,new EventArgs());
+		}
+
+		public event EventHandler RequestClose;
 
 		public ITransferReaderFactory SelectedReader
 		{

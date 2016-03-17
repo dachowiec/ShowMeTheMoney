@@ -30,6 +30,8 @@ namespace ShowMeTheMoney
 			Locator.CurrentMutable.Register(() => new CsvReaderTransactionDialog(), typeof(CsvReaderTransactionDialog));
 			Locator.CurrentMutable.Register(() => new SelectTransactionReaderDialogViewModel(), typeof(SelectTransactionReaderDialogViewModel));
 			Locator.CurrentMutable.RegisterConstant(new EventAggregator(), typeof(IEventAggregator));
+			Locator.CurrentMutable.Register(() => new EncouragementView(), typeof(IViewFor<EncouragementViewModel>));
+			Locator.CurrentMutable.Register(() => new AnalyzeView(), typeof(IViewFor<AnalyzeViewModel>));
 		}
 
 		private static void RegisterExceptionHandlers()

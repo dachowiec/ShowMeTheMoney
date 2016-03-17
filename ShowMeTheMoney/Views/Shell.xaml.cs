@@ -6,19 +6,17 @@ using ShowMeTheMoney.ViewModels;
 using ShowMeTheMoney.ViewModels.Events;
 using Splat;
 
-namespace ShowMeTheMoney
+namespace ShowMeTheMoney.Views
 {
 	/// <summary>
 	/// Interaction logic for Shell.xaml
 	/// </summary>
-	public partial class Shell : IViewFor<ShellViewModel>, IScreen, IHandle<NewTransfers>
+	public partial class Shell : IViewFor<ShellViewModel>, IScreen
 	{
 		private IEventAggregator _eventAggregator;
 
 		public Shell()
 		{
-			_eventAggregator = Locator.Current.GetService<IEventAggregator>();
-			_eventAggregator.Subscribe(this);
 			InitializeComponent();
 			ViewModel = new ShellViewModel();
 
@@ -27,6 +25,7 @@ namespace ShowMeTheMoney
 			Router = new RoutingState();
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			this.BindCommand(ViewModel, vm => vm.OpenFileDialog, v => v.openFile);
+			this.Bind(ViewModel, vm => vm.ViewModel, v => v.viewHost.ViewModel);
 		}
 
 		object IViewFor.ViewModel
@@ -39,9 +38,6 @@ namespace ShowMeTheMoney
 
 		public RoutingState Router { get; private set; }
 
-		public void Handle(NewTransfers message)
-		{
-			MessageBox.Show("Tak tak !!!");
-		}
+		
 	}
 }
