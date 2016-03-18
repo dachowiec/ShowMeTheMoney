@@ -2,9 +2,8 @@ framework: net451
 source https://www.nuget.org/api/v2
 
 nuget Rx-PlatformServices = 2.2.5
-nuget Fixie
+nuget Xunit
 nuget FakeItEasy
 nuget FluentAssertions
 nuget CsvHelper
 nuget ReactiveUI
-nuget Autofac

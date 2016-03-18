@@ -2,10 +2,8 @@ FRAMEWORK: NET451
 NUGET
   remote: https://www.nuget.org/api/v2
   specs:
-    Autofac (3.5.2)
     CsvHelper (2.13.5)
     FakeItEasy (1.25.3)
-    Fixie (1.0.0.41)
     FluentAssertions (4.2.2)
     reactiveui (6.5.0)
       reactiveui-core (6.5.0)
@@ -30,3 +28,15 @@ NUGET
     Rx-Xaml (2.2.5)
       Rx-Main (>= 2.2.5)
     Splat (1.6.2)
+    xunit (2.1.0)
+      xunit.assert (2.1.0)
+      xunit.core (2.1.0)
+    xunit.abstractions (2.0.0)
+    xunit.assert (2.1.0)
+    xunit.core (2.1.0)
+      xunit.extensibility.core (2.1.0)
+      xunit.extensibility.execution (2.1.0)
+    xunit.extensibility.core (2.1.0)
+      xunit.abstractions (2.0.0)
+    xunit.extensibility.execution (2.1.0)
+      xunit.extensibility.core (2.1.0)
