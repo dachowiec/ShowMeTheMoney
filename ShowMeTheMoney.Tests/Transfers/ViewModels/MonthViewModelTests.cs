@@ -5,6 +5,7 @@ using FluentAssertions;
 using ReactiveUI;
 using ShowMeTheMoney.Transfers;
 using ShowMeTheMoney.Transfers.Models;
+using Xunit;
 
 namespace ShowMeTheMoney.Tests.Transfers.ViewModels
 {
@@ -12,6 +13,7 @@ namespace ShowMeTheMoney.Tests.Transfers.ViewModels
 	{
 		private ReactiveList<int> list;
 
+		[Fact]
 		public void InitialSum()
 		{
 			var sut = new MonthViewModel(new List<Transfer>());
