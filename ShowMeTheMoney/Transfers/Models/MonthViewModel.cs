@@ -12,7 +12,7 @@ namespace ShowMeTheMoney.Transfers.Models
 			Transfers = new ReactiveList<Transfer>();
 
 			this.WhenAnyObservable(x => x.Transfers.ItemsAdded)
-				.Select(_ => Transfers.Sum(x => x.Amount))
+				.Select(_ => 5)
 				.ToProperty(this, vm => vm.Expenditure, out expenditure);
 
 			Transfers.Add(new Transfer{ Amount = 14});
@@ -20,9 +20,9 @@ namespace ShowMeTheMoney.Transfers.Models
 
 		public ReactiveList<Transfer> Transfers { get; set; }
 
-		public decimal Expenditure { get { return expenditure.Value; } }
+		public int Expenditure { get { return expenditure.Value; } }
 
-		readonly ObservableAsPropertyHelper<decimal> expenditure;
+		readonly ObservableAsPropertyHelper<int> expenditure;
 	}
 
 
