@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using ReactiveUI;
 using ShowMeTheMoney.Transfers;
@@ -11,27 +10,54 @@ namespace ShowMeTheMoney.Tests.Transfers.ViewModels
 {
 	public class MonthViewModelTests : ReactiveObject
 	{
-		private ReactiveList<int> list;
-
 		[Fact]
-		public void InitialSum()
+		public void Expanses_Value()
 		{
-			var sut = new MonthViewModel(new List<Transfer>());
+			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = -14M }, new Transfer { Amount = -10 } });
 
-			//sut.Expenditure.Should().Be(14);
+			sut.Expanses.Should().Be(-24M);
 
-			list = new ReactiveList<int>();
+			decimal d = sut.Transfers.Sum(x => x.Amount);
 
-			this.WhenAnyObservable(x => x.list.CountChanged)
-				.Select(_ => 5)
-				.ToProperty(this, vm => vm.Expenditure, out expenditure);
+			sut.Transfers.Add(new Transfer { Amount = -5 });
 
-			list.Add(4);
-			Console.WriteLine(Expenditure);
+			sut.Expanses.Should().Be(-29M);
 		}
 
-		public int Expenditure { get { return expenditure.Value; } }
+		[Fact]
+		public void Income_Value()
+		{
+			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = 11M }, new Transfer { Amount = 12M } });
 
-		ObservableAsPropertyHelper<int> expenditure;
+			sut.Incomes.Should().Be(23M);
+
+			sut.Transfers.Add(new Transfer { Amount = 1 });
+
+			sut.Incomes.Should().Be(24M);
+		}
+
+		[Fact]
+		public void Income_And_Expenditure_Value()
+		{
+			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = -5M }, new Transfer { Amount = 44M } });
+
+			sut.Incomes.Should().Be(44M);
+			sut.Expanses.Should().Be(-5M);
+		}
+
+		[Fact]
+		public void Result_Value()
+		{
+			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = -5M }, new Transfer { Amount = 44M } });
+
+			sut.Balance.Should().Be(39M);
+
+			sut.Transfers.Add(new Transfer { Amount = 15M });
+
+			sut.Balance.Should().Be(54M);
+			sut.Incomes.Should().Be(59M);
+			sut.Expanses.Should().Be(-5M);
+		}
+
 	}
 }

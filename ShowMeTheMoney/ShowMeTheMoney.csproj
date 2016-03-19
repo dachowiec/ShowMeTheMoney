@@ -69,6 +69,7 @@
     <Compile Include="Transfers\Factories\DbBankTransferReaderFactory.cs" />
     <Compile Include="Transfers\Factories\MBankTransferReaderFactory.cs" />
     <Compile Include="Transfers\ITransferReaderFactory.cs" />
+    <Compile Include="Transfers\Models\YearViewModel.cs" />
     <Compile Include="ViewModels\Events\NewTransfers.cs" />
     <Compile Include="ViewModels\SelectTransactionReaderDialogViewModel.cs" />
     <Compile Include="Views\CsvReaderTransactionDialog.xaml.cs">

@@ -9,20 +9,35 @@ namespace ShowMeTheMoney.Transfers.Models
 	{
 		public MonthViewModel(IList<Transfer> transfers)
 		{
-			Transfers = new ReactiveList<Transfer>();
+			Transfers = new ReactiveList<Transfer>(transfers);
 
-			this.WhenAnyObservable(x => x.Transfers.ItemsAdded)
-				.Select(_ => 5)
-				.ToProperty(this, vm => vm.Expenditure, out expenditure);
+			this.WhenAnyObservable(x => x.Transfers.Changed)
+				.Select(_ => Transfers.Where(x => x.Amount > 0).Sum(x => x.Amount))
+				.StartWith(Transfers.Where(x => x.Amount > 0).Sum(x => x.Amount))
+				.ToProperty(this, vm => vm.Incomes, out _income);
 
-			Transfers.Add(new Transfer{ Amount = 14});
+			this.WhenAnyObservable(x => x.Transfers.Changed)
+				.Select(_ => Transfers.Where(x => x.Amount < 0).Sum(x => x.Amount))
+				.StartWith(Transfers.Where(x => x.Amount < 0).Sum(x => x.Amount))
+				.ToProperty(this, vm => vm.Expanses, out _expenditure);
+
+			this.WhenAnyValue(x => x.Incomes, x => x.Expanses)
+				.Select(t => t.Item1 + t.Item2)
+				.ToProperty(this, vm => vm.Balance, out _balance);
+
 		}
 
-		public ReactiveList<Transfer> Transfers { get; set; }
+		public ReactiveList<Transfer> Transfers { get; private set; }
 
-		public int Expenditure { get { return expenditure.Value; } }
+		public decimal Incomes { get { return _income.Value; } }
 
-		readonly ObservableAsPropertyHelper<int> expenditure;
+		public decimal Expanses { get { return _expenditure.Value; } }
+
+		public decimal Balance { get { return _balance.Value; } }
+
+		readonly ObservableAsPropertyHelper<decimal> _expenditure;
+		readonly ObservableAsPropertyHelper<decimal> _income;
+		readonly ObservableAsPropertyHelper<decimal> _balance;
 	}
 
 
