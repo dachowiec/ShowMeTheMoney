@@ -4,6 +4,6 @@ namespace ShowMeTheMoney.Transfers
 {
 	public interface ITransferReader
 	{
-		IList<Transfer> Read();
+		IList<RawTransfer> Read();
 	}
 }

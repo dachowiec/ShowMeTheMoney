@@ -23,11 +23,11 @@ namespace ShowMeTheMoney.Transfers.Readers
 			};
 		}
 
-		public IList<Transfer> Read()
+		public IList<RawTransfer> Read()
 		{
 			stream.Position = 0;
 
-			var transfers = new List<Transfer>();
+			var transfers = new List<RawTransfer>();
 			var csvReader = new CsvReader(new StringReader(GetContent()), GetConfiguration());
 
 			while (csvReader.Read())
@@ -35,7 +35,7 @@ namespace ShowMeTheMoney.Transfers.Readers
 				if (string.IsNullOrEmpty(csvReader.GetField<string>(0)))
 					break;
 
-				transfers.Add(new Transfer
+				transfers.Add(new RawTransfer
 				{
 					Date = csvReader.GetField<DateTime>(0),
 					Amount = decimal.Parse(csvReader.GetField<string>(6)),

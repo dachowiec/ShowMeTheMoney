@@ -13,15 +13,15 @@ namespace ShowMeTheMoney.Transfers.Readers
 			this.stream = stream;
 		}
 
-		public IList<Transfer> Read()
+		public IList<RawTransfer> Read()
 		{
 			var reader = new CsvReader(new StreamReader(stream), GetConfiguration());
-			var transfers = new List<Transfer>();
+			var transfers = new List<RawTransfer>();
 
 			while (reader.Read())
 			{
 				transfers.Add(
-					new Transfer
+					new RawTransfer
 					{
 						Date = reader.GetField<DateTime>(0),
 						Amount = decimal.Parse(reader.GetField<string>(3)),

@@ -5,6 +5,6 @@ namespace ShowMeTheMoney.ViewModels.Events
 {
 	public class NewTransfers
 	{
-		public IList<Transfer> Transfers { get; set; }
+		public IList<RawTransfer> Transfers { get; set; }
 	}
 }

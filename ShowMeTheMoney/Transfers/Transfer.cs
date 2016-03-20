@@ -1,17 +1,13 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace ShowMeTheMoney.Transfers
 {
 	public class Transfer
 	{
-		public DateTime Date { get; set; }
+		public RawTransfer Raw { get; set; }
 
-		public string Title { get; set; }
+		public string Category { get; set; }
 
-		public decimal Amount { get; set; }
-
-		public string RecipientAccountNumber { get; set; }
-
-		public string AddtitionalInfo { get; set; }
+		public List<string> Tags { get; set; }
 	}
 }

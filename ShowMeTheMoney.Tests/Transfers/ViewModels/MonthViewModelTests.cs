@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using FluentAssertions;
 using ReactiveUI;
 using ShowMeTheMoney.Transfers;
@@ -13,13 +12,11 @@ namespace ShowMeTheMoney.Tests.Transfers.ViewModels
 		[Fact]
 		public void Expanses_Value()
 		{
-			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = -14M }, new Transfer { Amount = -10 } });
+			var sut = new MonthModel(new List<RawTransfer> { new RawTransfer { Amount = -14M }, new RawTransfer { Amount = -10 } });
 
 			sut.Expanses.Should().Be(-24M);
 
-			decimal d = sut.Transfers.Sum(x => x.Amount);
-
-			sut.Transfers.Add(new Transfer { Amount = -5 });
+			sut.Transfers.Add(new RawTransfer { Amount = -5 });
 
 			sut.Expanses.Should().Be(-29M);
 		}
@@ -27,11 +24,11 @@ namespace ShowMeTheMoney.Tests.Transfers.ViewModels
 		[Fact]
 		public void Income_Value()
 		{
-			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = 11M }, new Transfer { Amount = 12M } });
+			var sut = new MonthModel(new List<RawTransfer> { new RawTransfer { Amount = 11M }, new RawTransfer { Amount = 12M } });
 
 			sut.Incomes.Should().Be(23M);
 
-			sut.Transfers.Add(new Transfer { Amount = 1 });
+			sut.Transfers.Add(new RawTransfer { Amount = 1 });
 
 			sut.Incomes.Should().Be(24M);
 		}
@@ -39,7 +36,7 @@ namespace ShowMeTheMoney.Tests.Transfers.ViewModels
 		[Fact]
 		public void Income_And_Expenditure_Value()
 		{
-			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = -5M }, new Transfer { Amount = 44M } });
+			var sut = new MonthModel(new List<RawTransfer> { new RawTransfer { Amount = -5M }, new RawTransfer { Amount = 44M } });
 
 			sut.Incomes.Should().Be(44M);
 			sut.Expanses.Should().Be(-5M);
@@ -48,11 +45,11 @@ namespace ShowMeTheMoney.Tests.Transfers.ViewModels
 		[Fact]
 		public void Result_Value()
 		{
-			var sut = new MonthViewModel(new List<Transfer> { new Transfer { Amount = -5M }, new Transfer { Amount = 44M } });
+			var sut = new MonthModel(new List<RawTransfer> { new RawTransfer { Amount = -5M }, new RawTransfer { Amount = 44M } });
 
 			sut.Balance.Should().Be(39M);
 
-			sut.Transfers.Add(new Transfer { Amount = 15M });
+			sut.Transfers.Add(new RawTransfer { Amount = 15M });
 
 			sut.Balance.Should().Be(54M);
 			sut.Incomes.Should().Be(59M);

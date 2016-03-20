@@ -5,11 +5,11 @@ using ReactiveUI;
 
 namespace ShowMeTheMoney.Transfers.Models
 {
-	public class MonthViewModel : ReactiveObject
+	public class MonthModel : ReactiveObject
 	{
-		public MonthViewModel(IList<Transfer> transfers)
+		public MonthModel(IList<RawTransfer> transfers)
 		{
-			Transfers = new ReactiveList<Transfer>(transfers);
+			Transfers = new ReactiveList<RawTransfer>(transfers);
 
 			this.WhenAnyObservable(x => x.Transfers.Changed)
 				.Select(_ => Transfers.Where(x => x.Amount > 0).Sum(x => x.Amount))
@@ -27,7 +27,7 @@ namespace ShowMeTheMoney.Transfers.Models
 
 		}
 
-		public ReactiveList<Transfer> Transfers { get; private set; }
+		public ReactiveList<RawTransfer> Transfers { get; private set; }
 
 		public decimal Incomes { get { return _income.Value; } }
 

@@ -36,6 +36,9 @@
     <Compile Include="ResourceFileLoader.cs" />
     <Compile Include="Transfers\Readers\DBankTransferReaderTests.cs" />
     <Compile Include="Transfers\Readers\MBankTransferReaderTests.cs" />
+    <Compile Include="Transfers\Storage\InMemoryTransferDaoTests.cs" />
+    <Compile Include="Transfers\RawTansferTests.cs" />
+    <Compile Include="Transfers\TransferTests.cs" />
     <Compile Include="Transfers\ViewModels\MonthViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
