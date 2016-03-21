@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive.Linq;
 using Caliburn.Micro;
 using ReactiveUI;
+using ShowMeTheMoney.Transfers;
+using ShowMeTheMoney.Transfers.Storage;
 using ShowMeTheMoney.ViewModels.Events;
 using ShowMeTheMoney.Views;
 using Splat;
@@ -21,12 +24,18 @@ namespace ShowMeTheMoney.ViewModels
 			OpenFileDialog
 				.ObserveOn(RxApp.MainThreadScheduler)
 				.Subscribe(_ => Locator.Current.GetService<CsvReaderTransactionDialog>().ShowDialog());
+
+			_transferDao = Locator.Current.GetService<ITransferDao>();
 		}
 
 		public void Handle(NewTransfers message)
 		{
 			if (!(ViewModel is AnalyzeViewModel))
 				ViewModel = new AnalyzeViewModel();
+
+			_transferDao.Save(message.Transfers.Select(t => new Transfer { Raw = t}).ToArray());
+
+			
 
 			var analyzeViewModel = ViewModel as AnalyzeViewModel;
 			analyzeViewModel.Accept(message);
@@ -44,5 +53,6 @@ namespace ShowMeTheMoney.ViewModels
 		public ReactiveCommand<object> OpenFileDialog { get; private set; }
 
 		private IEventAggregator _eventAggregator;
+		private ITransferDao _transferDao;
 	}
 }

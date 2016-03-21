@@ -6,6 +6,7 @@ using Caliburn.Micro;
 using ReactiveUI;
 using ShowMeTheMoney.Transfers;
 using ShowMeTheMoney.Transfers.Factories;
+using ShowMeTheMoney.Transfers.Storage;
 using ShowMeTheMoney.ViewModels;
 using ShowMeTheMoney.Views;
 using Splat;
@@ -32,6 +33,7 @@ namespace ShowMeTheMoney
 			Locator.CurrentMutable.RegisterConstant(new EventAggregator(), typeof(IEventAggregator));
 			Locator.CurrentMutable.Register(() => new EncouragementView(), typeof(IViewFor<EncouragementViewModel>));
 			Locator.CurrentMutable.Register(() => new AnalyzeView(), typeof(IViewFor<AnalyzeViewModel>));
+			Locator.CurrentMutable.RegisterConstant(new InMemoryTransferDao(), typeof(ITransferDao));
 		}
 
 		private static void RegisterExceptionHandlers()

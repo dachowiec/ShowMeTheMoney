@@ -2,23 +2,24 @@
 using System.Linq;
 using System.Reactive.Linq;
 using ReactiveUI;
+using ShowMeTheMoney.Transfers;
 
-namespace ShowMeTheMoney.Transfers.Models
+namespace ShowMeTheMoney.ViewModels
 {
-	public class MonthModel : ReactiveObject
+	public class MonthViewModel : ReactiveObject
 	{
-		public MonthModel(IList<RawTransfer> transfers)
+		public MonthViewModel(IEnumerable<Transfer> transfers)
 		{
-			Transfers = new ReactiveList<RawTransfer>(transfers);
+			Transfers = new ReactiveList<Transfer>(transfers);
 
 			this.WhenAnyObservable(x => x.Transfers.Changed)
-				.Select(_ => Transfers.Where(x => x.Amount > 0).Sum(x => x.Amount))
-				.StartWith(Transfers.Where(x => x.Amount > 0).Sum(x => x.Amount))
+				.Select(_ => Transfers.Where(x => x.Raw.Amount > 0).Sum(x => x.Raw.Amount))
+				.StartWith(Transfers.Where(x => x.Raw.Amount > 0).Sum(x => x.Raw.Amount))
 				.ToProperty(this, vm => vm.Incomes, out _income);
 
 			this.WhenAnyObservable(x => x.Transfers.Changed)
-				.Select(_ => Transfers.Where(x => x.Amount < 0).Sum(x => x.Amount))
-				.StartWith(Transfers.Where(x => x.Amount < 0).Sum(x => x.Amount))
+				.Select(_ => Transfers.Where(x => x.Raw.Amount < 0).Sum(x => x.Raw.Amount))
+				.StartWith(Transfers.Where(x => x.Raw.Amount < 0).Sum(x => x.Raw.Amount))
 				.ToProperty(this, vm => vm.Expanses, out _expenditure);
 
 			this.WhenAnyValue(x => x.Incomes, x => x.Expanses)
@@ -27,7 +28,7 @@ namespace ShowMeTheMoney.Transfers.Models
 
 		}
 
-		public ReactiveList<RawTransfer> Transfers { get; private set; }
+		public ReactiveList<Transfer> Transfers { get; private set; }
 
 		public decimal Incomes { get { return _income.Value; } }
 

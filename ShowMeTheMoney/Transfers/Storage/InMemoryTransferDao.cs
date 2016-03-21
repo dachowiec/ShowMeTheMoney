@@ -11,7 +11,7 @@ namespace ShowMeTheMoney.Transfers.Storage
 			_transfers.AddRange(transfers);
 		}
 
-		public IList<Transfer> GetTransfers(int? year = null, int? month = null, int? day = null)
+		public List<Transfer> GetTransfers(int? year = null, int? month = null, int? day = null)
 		{
 			return _transfers.Where(GetPredicate(year, month, day)).ToList();
 		}

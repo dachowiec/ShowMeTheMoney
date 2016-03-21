@@ -58,7 +58,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Transfers\Models\MonthModel.cs" />
+    <Compile Include="ViewModels\Factories\IYearViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\YearViewModelFactory.cs" />
+    <Compile Include="ViewModels\MonthViewModel.cs" />
     <Compile Include="Other\EventAggregator.cs" />
     <Compile Include="Other\IClosable.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -69,10 +71,9 @@
     <Compile Include="Transfers\Factories\DbBankTransferReaderFactory.cs" />
     <Compile Include="Transfers\Factories\MBankTransferReaderFactory.cs" />
     <Compile Include="Transfers\ITransferReaderFactory.cs" />
-    <Compile Include="Transfers\Models\YearModel.cs" />
+    <Compile Include="ViewModels\YearViewModel.cs" />
     <Compile Include="Transfers\Storage\InMemoryTransferDao.cs" />
     <Compile Include="Transfers\Storage\ITransferDao.cs" />
-    <Compile Include="Transfers\Storage\ITransferService.cs" />
     <Compile Include="Transfers\Transfer.cs" />
     <Compile Include="ViewModels\Events\NewTransfers.cs" />
     <Compile Include="ViewModels\SelectTransactionReaderDialogViewModel.cs" />
@@ -145,6 +146,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\" />
+    <Folder Include="Transfers\Models\" />
+    <Folder Include="Transfers\Operations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

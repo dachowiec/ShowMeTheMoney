@@ -6,6 +6,6 @@ namespace ShowMeTheMoney.Transfers.Storage
 	{
 		void Save(params Transfer[] transfers);
 
-		IList<Transfer> GetTransfers(int? year, int? month, int? day);
+		List<Transfer> GetTransfers(int? year, int? month, int? day);
 	}
 }

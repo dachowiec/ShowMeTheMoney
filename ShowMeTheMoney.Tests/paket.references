@@ -1,3 +1,4 @@
-XUnit
 FluentAssertions
 ReactiveUI
+FakeItEasy
+XUnit
