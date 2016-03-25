@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Concurrency;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,6 +41,8 @@ namespace ShowMeTheMoney
 		{
 			AppDomain.CurrentDomain.UnhandledException +=
 				(sender, args) => new ExceptionWindow(args.ExceptionObject as Exception).Show();
+
+			
 
 			Current.DispatcherUnhandledException += (sender, args) =>
 			{

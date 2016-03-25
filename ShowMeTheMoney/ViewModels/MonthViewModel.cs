@@ -12,6 +12,8 @@ namespace ShowMeTheMoney.ViewModels
 		{
 			Transfers = new ReactiveList<Transfer>(transfers);
 
+			MonthName = transfers.First().Raw.Date.ToString("MMMM");
+
 			this.WhenAnyObservable(x => x.Transfers.Changed)
 				.Select(_ => Transfers.Where(x => x.Raw.Amount > 0).Sum(x => x.Raw.Amount))
 				.StartWith(Transfers.Where(x => x.Raw.Amount > 0).Sum(x => x.Raw.Amount))
@@ -29,6 +31,8 @@ namespace ShowMeTheMoney.ViewModels
 		}
 
 		public ReactiveList<Transfer> Transfers { get; private set; }
+
+		public string MonthName { get; private set; }
 
 		public decimal Incomes { get { return _income.Value; } }
 

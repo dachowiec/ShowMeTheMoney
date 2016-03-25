@@ -6,6 +6,7 @@ using ReactiveUI;
 using ShowMeTheMoney.Transfers;
 using ShowMeTheMoney.Transfers.Storage;
 using ShowMeTheMoney.ViewModels.Events;
+using ShowMeTheMoney.ViewModels.Factories;
 using ShowMeTheMoney.Views;
 using Splat;
 
@@ -33,12 +34,12 @@ namespace ShowMeTheMoney.ViewModels
 			if (!(ViewModel is AnalyzeViewModel))
 				ViewModel = new AnalyzeViewModel();
 
-			_transferDao.Save(message.Transfers.Select(t => new Transfer { Raw = t}).ToArray());
+			_transferDao.Save(message.Transfers.Select(t => new Transfer { Raw = t }).ToArray());
 
-			
+			var fact = new YearViewModelFactory(_transferDao);
 
 			var analyzeViewModel = ViewModel as AnalyzeViewModel;
-			analyzeViewModel.Accept(message);
+			analyzeViewModel.YearModels = fact.CreatForYears(DateTime.Now.Year,DateTime.Now.Year - 1);
 
 		}
 
