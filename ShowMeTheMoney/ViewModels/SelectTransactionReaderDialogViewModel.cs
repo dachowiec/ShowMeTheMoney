@@ -23,7 +23,7 @@ namespace ShowMeTheMoney.ViewModels
 
 			ReadTransactions =
 				this.WhenAnyValue(x => x.SelectedFile, x => x.SelectedReader,
-					(file,reader) => file !=null && reader != null)
+					(file, reader) => !string.IsNullOrWhiteSpace(file) && reader != null)
 					.DistinctUntilChanged()
 					.ToCommand();
 					
