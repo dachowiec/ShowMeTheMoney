@@ -5,60 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            <Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="2*"/>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="2*"/>
 		</Grid.ColumnDefinitions>
-		<ScrollViewer>
-			<ItemsControl x:Name="years">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Vertical"></StackPanel>
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition />
-								<RowDefinition />
-							</Grid.RowDefinitions>
-							<TextBlock Text="{Binding Year}" HorizontalAlignment="Center"></TextBlock>
-							<ItemsControl ItemsSource="{Binding Months}" Grid.Row="1" >
-								<ItemsControl.ItemsPanel>
-									<ItemsPanelTemplate>
-										<StackPanel Orientation="Vertical"></StackPanel>
-									</ItemsPanelTemplate>
-								</ItemsControl.ItemsPanel>
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Grid>
-											<Grid.RowDefinitions >
-												<RowDefinition />
-												<RowDefinition />
-											</Grid.RowDefinitions>
-											<TextBlock Text="{Binding MonthName}"></TextBlock>
-											<Grid Grid.Row="1">
-												<Grid.ColumnDefinitions >
-													<ColumnDefinition />
-													<ColumnDefinition />
-													<ColumnDefinition />
-												</Grid.ColumnDefinitions>
-												<TextBlock Foreground="LawnGreen" FontWeight="Bold" Text="{Binding Incomes,StringFormat=N2}"></TextBlock>
-												<TextBlock Grid.Column="1" Foreground="IndianRed" FontWeight="Bold" Text="{Binding Expanses,StringFormat=N2}"></TextBlock>
-												<TextBlock Grid.Column="2"  Text="{Binding Balance,StringFormat=N2}"></TextBlock>
-											</Grid>
-											
-										</Grid>
-										
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
+		<ListView x:Name="pediods" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<Grid HorizontalAlignment="Stretch">
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+						<TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center" FontSize="14" ></TextBlock>
+						<Grid Grid.Row="1" >
+							<Grid.ColumnDefinitions >
+								<ColumnDefinition />
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<TextBlock TextAlignment="Right" Foreground="ForestGreen" FontWeight="Bold" Text="{Binding Incomes,StringFormat=N2}"></TextBlock>
+							<TextBlock TextAlignment="Right" Grid.Column="1" Foreground="IndianRed" FontWeight="Bold" Text="{Binding Expanses,StringFormat=N2}"></TextBlock>
+							<TextBlock TextAlignment="Right" Grid.Column="2"  Text="{Binding Balance,StringFormat=N2}"></TextBlock>
 						</Grid>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</ScrollViewer>
+					</Grid>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<DataGrid Grid.Column="1" ItemsSource="{Binding ElementName=pediods,Path=SelectedItem.Transfers}" AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn  Binding="{Binding Raw.Date,StringFormat=yyyy-MM-dd}"></DataGridTextColumn>
+				<DataGridTextColumn Binding="{Binding Raw.Amount,StringFormat=N2}"></DataGridTextColumn>
+				<DataGridTextColumn Binding="{Binding Raw.Title}"></DataGridTextColumn>
+
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
 </UserControl>

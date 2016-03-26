@@ -12,7 +12,7 @@ namespace ShowMeTheMoney.Views
 		public AnalyzeView()
 		{
 			InitializeComponent();
-			this.OneWayBind(ViewModel, vm => vm.YearModels, v => v.years.ItemsSource);
+			this.OneWayBind(ViewModel, vm => vm.FinancialPeriods, v => v.pediods.ItemsSource);
 		}
 
 		object IViewFor.ViewModel

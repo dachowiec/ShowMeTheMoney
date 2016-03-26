@@ -36,11 +36,11 @@ namespace ShowMeTheMoney.ViewModels
 
 			_transferDao.Save(message.Transfers.Select(t => new Transfer { Raw = t }).ToArray());
 
-			var fact = new YearViewModelFactory(_transferDao);
+			var fact = new FinancialperiodViewModelFactory(_transferDao);
 
 			var analyzeViewModel = ViewModel as AnalyzeViewModel;
-			analyzeViewModel.YearModels = fact.CreatForYears(DateTime.Now.Year,DateTime.Now.Year - 1);
-
+			analyzeViewModel.FinancialPeriods =
+				new ReactiveList<IFinancialPeriodViewModel>(fact.CreatForYears(DateTime.Now.Year, DateTime.Now.Year - 1));
 		}
 
 		public object ViewModel

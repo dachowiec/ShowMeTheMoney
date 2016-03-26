@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 
@@ -54,7 +55,7 @@ namespace ShowMeTheMoney.Transfers.Readers
 
 		private string GetContent()
 		{
-			var reader = new StreamReader(stream);
+			var reader = new StreamReader(stream,Encoding.Default);
 
 			SkipHeader(reader);
 

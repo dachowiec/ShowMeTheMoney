@@ -58,8 +58,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\Factories\FinancialperiodViewModelFactory.cs" />
+    <Compile Include="ViewModels\Factories\IFinancialperiodViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IYearViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\YearViewModelFactory.cs" />
+    <Compile Include="ViewModels\FinancialPeriodViewModel.cs" />
+    <Compile Include="ViewModels\IFinancialPeriodViewModel.cs" />
     <Compile Include="ViewModels\MonthViewModel.cs" />
     <Compile Include="Other\EventAggregator.cs" />
     <Compile Include="Other\IClosable.cs" />

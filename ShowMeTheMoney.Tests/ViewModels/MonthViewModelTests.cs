@@ -5,7 +5,7 @@ using ShowMeTheMoney.Transfers;
 using ShowMeTheMoney.ViewModels;
 using Xunit;
 
-namespace ShowMeTheMoney.Tests.Transfers.ViewModels
+namespace ShowMeTheMoney.Tests.ViewModels
 {
 	public class MonthViewModelTests : ReactiveObject
 	{

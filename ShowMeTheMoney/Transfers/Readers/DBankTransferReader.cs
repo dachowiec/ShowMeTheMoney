@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
 
@@ -15,7 +16,7 @@ namespace ShowMeTheMoney.Transfers.Readers
 
 		public IList<RawTransfer> Read()
 		{
-			var reader = new CsvReader(new StreamReader(stream), GetConfiguration());
+			var reader = new CsvReader(new StreamReader(stream,Encoding.Default), GetConfiguration());
 			var transfers = new List<RawTransfer>();
 
 			while (reader.Read())

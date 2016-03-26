@@ -39,7 +39,9 @@
     <Compile Include="Transfers\Storage\InMemoryTransferDaoTests.cs" />
     <Compile Include="Transfers\RawTansferTests.cs" />
     <Compile Include="Transfers\TransferTests.cs" />
-    <Compile Include="Transfers\ViewModels\MonthViewModelTests.cs" />
+    <Compile Include="ViewModels\Factories\FinancialperiodViewModelFactoryTests.cs" />
+    <Compile Include="ViewModels\FinancialPeriodViewModelTests.cs" />
+    <Compile Include="ViewModels\MonthViewModelTests.cs" />
     <Compile Include="ViewModels\Factories\YearViewModelFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Transfers\Factories\" />
+    <Folder Include="Transfers\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Hazzik.Maybe, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
