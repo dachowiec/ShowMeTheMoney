@@ -42,6 +42,7 @@
     <Compile Include="ViewModels\Factories\FinancialperiodViewModelFactoryTests.cs" />
     <Compile Include="ViewModels\FinancialPeriodViewModelTests.cs" />
     <Compile Include="ViewModels\MonthViewModelTests.cs" />
+    <Compile Include="Transfers\ViewModels\SelectTransactionReaderDialogViewModelTest.cs" />
     <Compile Include="ViewModels\Factories\YearViewModelFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
