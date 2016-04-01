@@ -31,13 +31,18 @@ namespace ShowMeTheMoney.Views
 
 		public SelectTransactionReaderDialogViewModel ViewModel { get; set; }
 
-		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+		private void ChooseFile_OnClick(object sender, RoutedEventArgs e)
 		{
-			var filedialog =new OpenFileDialog();
+			var filedialog = new OpenFileDialog();
 			if (filedialog.ShowDialog().GetValueOrDefault())
 			{
 				ViewModel.SelectedFile = filedialog.FileName;
 			}
+		}
+
+		private void Close_OnClick(object sender, RoutedEventArgs e)
+		{
+			this.Close();
 		}
 	}
 }

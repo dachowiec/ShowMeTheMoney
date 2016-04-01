@@ -138,6 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icn.ico" />
+    <Resource Include="images\bank_background.png" />
+    <None Include="Resources\bank_background.png" />
     <Resource Include="images\mbank.jpg" />
     <Resource Include="images\deutscheBank.png" />
     <Resource Include="images\icn.png" />
