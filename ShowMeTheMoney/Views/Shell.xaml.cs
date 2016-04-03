@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using Caliburn.Micro;
 using ReactiveUI;
 using ShowMeTheMoney.ViewModels;
@@ -26,6 +27,8 @@ namespace ShowMeTheMoney.Views
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			this.BindCommand(ViewModel, vm => vm.OpenFileDialog, v => v.openFile);
 			this.Bind(ViewModel, vm => vm.ViewModel, v => v.viewHost.ViewModel);
+
+			MouseWheel += Zoom_MouseWheel;
 		}
 
 		object IViewFor.ViewModel
@@ -38,6 +41,15 @@ namespace ShowMeTheMoney.Views
 
 		public RoutingState Router { get; private set; }
 
-		
+		private void Zoom_MouseWheel(object sender, MouseWheelEventArgs e)
+		{
+			bool handle = (Keyboard.Modifiers & ModifierKeys.Control) > 0;
+			if (!handle)
+				return;
+
+			var settings = Locator.Current.GetService<ViewSettings>();
+			settings.FontSize += 2 * Math.Sign(e.Delta);
+		}
+
 	}
 }

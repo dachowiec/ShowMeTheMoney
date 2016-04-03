@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Other\StatePersisterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceFileLoader.cs" />
     <Compile Include="Transfers\Readers\DBankTransferReaderTests.cs" />
@@ -62,12 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Transfers\Factories\" />
-    <Folder Include="Transfers\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Hazzik.Maybe, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Maybe.1.2.0\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Hazzik.Maybe.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Ploeh.Albedo">
+      <HintPath>..\packages\Albedo\lib\net35\Ploeh.Albedo.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

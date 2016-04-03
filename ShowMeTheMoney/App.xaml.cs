@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Reactive.Concurrency;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using ReactiveUI;
+using ShowMeTheMoney.Other;
 using ShowMeTheMoney.Transfers;
 using ShowMeTheMoney.Transfers.Factories;
 using ShowMeTheMoney.Transfers.Storage;
@@ -35,14 +33,19 @@ namespace ShowMeTheMoney
 			Locator.CurrentMutable.Register(() => new EncouragementView(), typeof(IViewFor<EncouragementViewModel>));
 			Locator.CurrentMutable.Register(() => new AnalyzeView(), typeof(IViewFor<AnalyzeViewModel>));
 			Locator.CurrentMutable.RegisterConstant(new InMemoryTransferDao(), typeof(ITransferDao));
+
+			var viewSettings = (ViewSettings)Resources["ViewSettings"];
+			new StatePersister(new XmlFileStateDao()).Observe(viewSettings,
+					Ploeh.Albedo.Properties.Select(() => viewSettings.FontSize));
+			Locator.CurrentMutable.RegisterConstant(viewSettings, typeof(ViewSettings));
+
+			//SaveStoreForget.WriteToXmlFile((ViewSettings)Resources["ViewSettings"]);
 		}
 
 		private static void RegisterExceptionHandlers()
 		{
 			AppDomain.CurrentDomain.UnhandledException +=
 				(sender, args) => new ExceptionWindow(args.ExceptionObject as Exception).Show();
-
-			
 
 			Current.DispatcherUnhandledException += (sender, args) =>
 			{

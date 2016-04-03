@@ -9,3 +9,4 @@ nuget CsvHelper
 nuget ReactiveUI
 nuget Autofac
 nuget FakeItEasy
+nuget Albedo

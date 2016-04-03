@@ -2,6 +2,7 @@ FRAMEWORK: NET451
 NUGET
   remote: https://www.nuget.org/api/v2
   specs:
+    Albedo (1.0.2)
     Autofac (3.5.2)
     CsvHelper (2.13.5)
     FakeItEasy (1.25.3)

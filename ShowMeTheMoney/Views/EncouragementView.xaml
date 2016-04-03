@@ -18,10 +18,10 @@
 			</Grid.ColumnDefinitions>
 		<TextBlock>
 			<Hyperlink >
-				<TextBlock Text="Otwórz" FontSize="14" Foreground="SteelBlue" />
+				<TextBlock Text="Otwórz"  Foreground="SteelBlue" />
 			</Hyperlink>
 		</TextBlock>
-		<TextBlock Grid.Column="1" FontSize="14" Margin="3,0,0,0">plik z transakcjami</TextBlock>
+		<TextBlock Grid.Column="1"  Margin="3,0,0,0">plik z transakcjami</TextBlock>
 		</Grid>
 	</Grid>
 </UserControl>
