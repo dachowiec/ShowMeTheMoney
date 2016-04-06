@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Other\InMemoryCategoryDaoTests.cs" />
     <Compile Include="Other\StatePersisterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceFileLoader.cs" />
