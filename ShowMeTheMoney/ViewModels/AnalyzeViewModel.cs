@@ -2,9 +2,12 @@
 
 namespace ShowMeTheMoney.ViewModels
 {
-	public class AnalyzeViewModel : ReactiveObject
+	public class AnalyzeViewModel : ReactiveObject, IRoutableViewModel
 	{
-		private ReactiveList<IFinancialPeriodViewModel> _financialPeriods;
+		public AnalyzeViewModel(IScreen screen)
+		{
+			HostScreen = screen;
+		}
 
 		public ReactiveList<IFinancialPeriodViewModel> FinancialPeriods
 		{
@@ -12,12 +15,10 @@ namespace ShowMeTheMoney.ViewModels
 			set { this.RaiseAndSetIfChanged(ref _financialPeriods, value); }
 		}
 
-		//public List<YearViewModel> YearModels
-		//{
-		//	get { return _yearModels; }
-		//	set { this.RaiseAndSetIfChanged(ref _yearModels, value); }
-		//}
+		private ReactiveList<IFinancialPeriodViewModel> _financialPeriods;
 
-		//private List<YearViewModel> _yearModels;
+		public IScreen HostScreen { get; set; }
+
+		public string UrlPathSegment { get; set; }
 	}
 }

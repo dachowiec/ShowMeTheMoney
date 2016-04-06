@@ -25,21 +25,31 @@ namespace ShowMeTheMoney
 
 		private void SetContainerRegistrations()
 		{
+			RegisterViews();
+
 			Locator.CurrentMutable.Register(() => new DbBankTransferReaderFactory(), typeof(ITransferReaderFactory));
 			Locator.CurrentMutable.Register(() => new MBankTransferReaderFactory(), typeof(ITransferReaderFactory));
 			Locator.CurrentMutable.Register(() => new CsvReaderTransactionDialog(), typeof(CsvReaderTransactionDialog));
 			Locator.CurrentMutable.Register(() => new SelectTransactionReaderDialogViewModel(), typeof(SelectTransactionReaderDialogViewModel));
-			Locator.CurrentMutable.RegisterConstant(new EventAggregator(), typeof(IEventAggregator));
-			Locator.CurrentMutable.Register(() => new EncouragementView(), typeof(IViewFor<EncouragementViewModel>));
-			Locator.CurrentMutable.Register(() => new AnalyzeView(), typeof(IViewFor<AnalyzeViewModel>));
-			Locator.CurrentMutable.RegisterConstant(new InMemoryTransferDao(), typeof(ITransferDao));
 
+			Locator.CurrentMutable.RegisterConstant(new EventAggregator(), typeof(IEventAggregator));
+
+			Locator.CurrentMutable.RegisterConstant(new InMemoryTransferDao(), typeof(ITransferDao));
+			Locator.CurrentMutable.RegisterConstant(new InMemoryCategoryDao(), typeof(ICategoryDao));
+			
 			var viewSettings = (ViewSettings)Resources["ViewSettings"];
 			new StatePersister(new XmlFileStateDao()).Observe(viewSettings,
 					Ploeh.Albedo.Properties.Select(() => viewSettings.FontSize));
 			Locator.CurrentMutable.RegisterConstant(viewSettings, typeof(ViewSettings));
 
 			//SaveStoreForget.WriteToXmlFile((ViewSettings)Resources["ViewSettings"]);
+		}
+
+		private void RegisterViews()
+		{
+			Locator.CurrentMutable.Register(() => new EncouragementView(), typeof(IViewFor<EncouragementViewModel>));
+			Locator.CurrentMutable.Register(() => new AnalyzeView(), typeof(IViewFor<AnalyzeViewModel>));
+			Locator.CurrentMutable.Register(() => new CategoriesView(), typeof(IViewFor<CategoriesViewModel>));
 		}
 
 		private static void RegisterExceptionHandlers()

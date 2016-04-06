@@ -2,7 +2,7 @@
 
 namespace ShowMeTheMoney.ViewModels
 {
-	public class EncouragementViewModel : ReactiveObject, IRoutableViewModel
+	public class CategoriesViewModel : ReactiveObject, IRoutableViewModel
 	{
 		public string UrlPathSegment { get; private set; }
 

@@ -4,7 +4,6 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using ReactiveUI;
 using ShowMeTheMoney.ViewModels;
-using ShowMeTheMoney.ViewModels.Events;
 using Splat;
 
 namespace ShowMeTheMoney.Views
@@ -26,7 +25,9 @@ namespace ShowMeTheMoney.Views
 			Router = new RoutingState();
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			this.BindCommand(ViewModel, vm => vm.OpenFileDialog, v => v.openFile);
-			this.Bind(ViewModel, vm => vm.ViewModel, v => v.viewHost.ViewModel);
+			this.BindCommand(ViewModel, vm => vm.EditCategories, v => v.editCategories);
+			//this.Bind(ViewModel, vm => vm.ViewModel, v => v.viewHost.ViewModel);
+			this.Bind(ViewModel, vm => vm.Router, v => v.viewHost.Router);
 
 			MouseWheel += Zoom_MouseWheel;
 		}

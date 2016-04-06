@@ -15,9 +15,12 @@
 			<MenuItem Header="Plik">
 				<MenuItem Header="Otwórz" x:Name="openFile" />
 			</MenuItem>
+			<MenuItem Header="Ustawienia">
+				<MenuItem Header="Kategorie" x:Name="editCategories" />
+			</MenuItem>
 		</Menu>
 		<Separator Margin="2,-1,2,0" Height="2" Background="LightGray"  Grid.Row="1"/>
-		<reactiveUi:ViewModelViewHost Grid.Row="2" x:Name="viewHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+		<reactiveUi:RoutedViewHost Grid.Row="2" x:Name="viewHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 			HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
 	</Grid>
 </Window>

@@ -64,6 +64,10 @@
     <Compile Include="Other\InMemoryCategoryDao.cs" />
     <Compile Include="Other\StatePersister.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\CategoriesViewModel.cs" />
+    <Compile Include="Views\CategoriesView.xaml.cs">
+      <DependentUpon>CategoriesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Converters\AddConverter.cs" />
     <Compile Include="ViewModels\Factories\FinancialperiodViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IFinancialperiodViewModelFactory.cs" />
@@ -124,6 +128,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\CategoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CsvReaderTransactionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icn.ico" />
+    <Resource Include="images\ggstyle.gif" />
     <Resource Include="images\bank_background.png" />
     <Resource Include="images\mbank.jpg" />
     <Resource Include="images\deutscheBank.png" />
@@ -264,6 +273,17 @@
       <ItemGroup>
         <Reference Include="Splat">
           <HintPath>..\packages\Splat\lib\Net45\Splat.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5.1'">
+      <ItemGroup>
+        <Reference Include="WpfAnimatedGif">
+          <HintPath>..\packages\WpfAnimatedGif\lib\net\WpfAnimatedGif.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
