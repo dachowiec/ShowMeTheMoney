@@ -13,6 +13,7 @@
 		
 		<Style TargetType="{x:Type Control}" x:Key="Global">
 			<Setter Property="FontSize" Value="{Binding Source={StaticResource ViewSettings},Path=FontSize}" />
+			<Setter Property="Foreground" Value="#212121" />
 		</Style>
 
 		<Style TargetType="{x:Type Button}" BasedOn="{StaticResource Global}">
@@ -25,6 +26,7 @@
 
 		<Style TargetType="{x:Type TextBlock}" >
 			<Setter Property="FontSize" Value="{Binding Source={StaticResource ViewSettings},Path=FontSize}" />
+			<Setter Property="Foreground" Value="#212121" />
 		</Style>
 	</Application.Resources>
 </Application>

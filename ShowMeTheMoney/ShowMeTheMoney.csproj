@@ -84,6 +84,7 @@
     <Compile Include="Transfers\Transfer.cs" />
     <Compile Include="ViewModels\Events\NewTransfers.cs" />
     <Compile Include="ViewModels\SelectTransactionReaderDialogViewModel.cs" />
+    <Compile Include="Views\Converters\BalanceForegroundConverter.cs" />
     <Compile Include="Views\CsvReaderTransactionDialog.xaml.cs">
       <DependentUpon>CsvReaderTransactionDialog.xaml</DependentUpon>
     </Compile>
@@ -155,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dialogs\" />
-    <Folder Include="Stored\" />
     <Folder Include="Transfers\Models\" />
     <Folder Include="Transfers\Operations\" />
   </ItemGroup>
