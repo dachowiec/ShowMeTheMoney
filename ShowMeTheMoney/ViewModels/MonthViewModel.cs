@@ -12,21 +12,21 @@ namespace ShowMeTheMoney.ViewModels
 		{
 			Transfers = new ReactiveList<Transfer>(transfers);
 
-			MonthName = transfers.First().Raw.Date.ToString("MMMM");
+			MonthName = Transfers.First().Raw.Date.ToString("MMMM");
 
 			this.WhenAnyObservable(x => x.Transfers.Changed)
 				.Select(_ => Transfers.Where(x => x.Raw.Amount > 0).Sum(x => x.Raw.Amount))
 				.StartWith(Transfers.Where(x => x.Raw.Amount > 0).Sum(x => x.Raw.Amount))
-				.ToProperty(this, vm => vm.Incomes, out _income);
+				.ToProperty(this, vm => vm.Incomes, out income);
 
 			this.WhenAnyObservable(x => x.Transfers.Changed)
 				.Select(_ => Transfers.Where(x => x.Raw.Amount < 0).Sum(x => x.Raw.Amount))
 				.StartWith(Transfers.Where(x => x.Raw.Amount < 0).Sum(x => x.Raw.Amount))
-				.ToProperty(this, vm => vm.Expanses, out _expenditure);
+				.ToProperty(this, vm => vm.Expanses, out expenditure);
 
 			this.WhenAnyValue(x => x.Incomes, x => x.Expanses)
 				.Select(t => t.Item1 + t.Item2)
-				.ToProperty(this, vm => vm.Balance, out _balance);
+				.ToProperty(this, vm => vm.Balance, out balance);
 
 		}
 
@@ -34,15 +34,15 @@ namespace ShowMeTheMoney.ViewModels
 
 		public string MonthName { get; private set; }
 
-		public decimal Incomes { get { return _income.Value; } }
+		public decimal Incomes { get { return income.Value; } }
 
-		public decimal Expanses { get { return _expenditure.Value; } }
+		public decimal Expanses { get { return expenditure.Value; } }
 
-		public decimal Balance { get { return _balance.Value; } }
+		public decimal Balance { get { return balance.Value; } }
 
-		readonly ObservableAsPropertyHelper<decimal> _expenditure;
-		readonly ObservableAsPropertyHelper<decimal> _income;
-		readonly ObservableAsPropertyHelper<decimal> _balance;
+		readonly ObservableAsPropertyHelper<decimal> expenditure;
+		readonly ObservableAsPropertyHelper<decimal> income;
+		readonly ObservableAsPropertyHelper<decimal> balance;
 	}
 
 

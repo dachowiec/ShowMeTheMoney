@@ -8,12 +8,12 @@ namespace ShowMeTheMoney.Transfers.Storage
 	{
 		public void Save(params Transfer[] transfers)
 		{
-			_transfers.AddRange(transfers);
+			this.transfers.AddRange(transfers);
 		}
 
 		public List<Transfer> GetTransfers(int? year = null, int? month = null, int? day = null)
 		{
-			return _transfers.Where(GetPredicate(year, month, day)).ToList();
+			return transfers.Where(GetPredicate(year, month, day)).ToList();
 		}
 
 		private Func<Transfer, bool> GetPredicate(int? year, int? month, int? day)
@@ -33,6 +33,6 @@ namespace ShowMeTheMoney.Transfers.Storage
 			};
 		}
 
-		private List<Transfer> _transfers = new List<Transfer>();
+		private readonly List<Transfer> transfers = new List<Transfer>();
 	}
 }

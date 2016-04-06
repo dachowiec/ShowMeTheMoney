@@ -52,19 +52,19 @@ namespace ShowMeTheMoney.ViewModels
 
 		public ITransferReaderFactory SelectedReader
 		{
-			get { return _selectedReader; }
-			set { this.RaiseAndSetIfChanged(ref _selectedReader, value); }
+			get { return selectedReader; }
+			set { this.RaiseAndSetIfChanged(ref selectedReader, value); }
 		}
 
 		public string SelectedFile
 		{
-			get { return _selectedFile; }
-			set { this.RaiseAndSetIfChanged(ref _selectedFile, value); }
+			get { return selectedFile; }
+			set { this.RaiseAndSetIfChanged(ref selectedFile, value); }
 		}
 
 		public ReactiveCommand<object> ReadTransactions { get; protected set; } 
 
-		private ITransferReaderFactory _selectedReader;
-		private string _selectedFile;
+		private ITransferReaderFactory selectedReader;
+		private string selectedFile;
 	}
 }

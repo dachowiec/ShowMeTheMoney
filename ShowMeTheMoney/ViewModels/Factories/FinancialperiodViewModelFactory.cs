@@ -9,7 +9,7 @@ namespace ShowMeTheMoney.ViewModels.Factories
 	{
 		public FinancialperiodViewModelFactory(ITransferDao transferDao)
 		{
-			_transferDao = transferDao;
+			this.transferDao = transferDao;
 		}
 
 		public List<IFinancialPeriodViewModel> CreatForYears(params int[] years)
@@ -18,7 +18,7 @@ namespace ShowMeTheMoney.ViewModels.Factories
 
 			foreach (var year in years)
 			{
-				var transfers = _transferDao.GetTransfers(year, null, null);
+				var transfers = transferDao.GetTransfers(year, null, null);
 				if (transfers.Count == 0)
 					continue;
 				result.Add(new FinancialPeriodViewModel(transfers, "Rok " + year));
@@ -35,18 +35,8 @@ namespace ShowMeTheMoney.ViewModels.Factories
 			}
 
 			return result;
-
-			//var transfers = years.SelectMany(year => _transferDao.GetTransfers(year, null, null)).ToList();
-
-			//if (transfers.Count == 0)
-
-
-			//var min = transfers.Min(x => x.Raw.Date);
-			//var max = transfers.Max(x => x.Raw.Date);
-
-			//return new List<IFinancialPeriodViewModel>();
 		}
 
-		private readonly ITransferDao _transferDao;
+		private readonly ITransferDao transferDao;
 	}
 }

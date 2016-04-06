@@ -20,8 +20,8 @@ namespace ShowMeTheMoney.ViewModels
 
 			Router.Navigate.Execute(new EncouragementViewModel());
 
-			_eventAggregator = Locator.Current.GetService<IEventAggregator>();
-			_eventAggregator.Subscribe(this);
+			var eventAggregator = Locator.Current.GetService<IEventAggregator>();
+			eventAggregator.Subscribe(this);
 
 			OpenFileDialog = ReactiveCommand.Create();
 			OpenFileDialog
@@ -33,46 +33,34 @@ namespace ShowMeTheMoney.ViewModels
 				.ObserveOn(RxApp.MainThreadScheduler)
 				.Subscribe(_ => Router.Navigate.Execute(new CategoriesViewModel()));
 
-			_transferDao = Locator.Current.GetService<ITransferDao>();
+			transferDao = Locator.Current.GetService<ITransferDao>();
 		}
-
-		public void Handle(NewTransfers message)
-		{
-			AnalyzeViewModel analyzeViewModel;
-
-			if (Router.NavigationStack.Last() is AnalyzeViewModel)
-			{
-				analyzeViewModel = Router.NavigationStack.Last() as AnalyzeViewModel;
-			}
-			else
-			{
-				analyzeViewModel = new AnalyzeViewModel(this);
-				Router.Navigate.Execute(analyzeViewModel);
-			}
-				
-
-			_transferDao.Save(message.Transfers.Select(t => new Transfer { Raw = t }).ToArray());
-
-			var fact = new FinancialperiodViewModelFactory(_transferDao);
-
-			analyzeViewModel.FinancialPeriods =
-				new ReactiveList<IFinancialPeriodViewModel>(fact.CreatForYears(DateTime.Now.Year, DateTime.Now.Year - 1));
-		}
-
-		//public object ViewModel
-		//{
-		//	get { return viewModel; }
-		//	set { this.RaiseAndSetIfChanged(ref viewModel, value); }
-		//}
 
 		public ReactiveCommand<object> OpenFileDialog { get; private set; }
 
 		public ReactiveCommand<object> EditCategories { get; private set; }
 
-		private object viewModel;
-		private IEventAggregator _eventAggregator;
-		private ITransferDao _transferDao;
-
 		public RoutingState Router { get; private set; }
+
+
+		public void Handle(NewTransfers message)
+		{
+			var analyzeViewModel = Router.NavigationStack.Last() as AnalyzeViewModel;
+			
+			if(analyzeViewModel == null)
+			{
+				analyzeViewModel = new AnalyzeViewModel(this);
+				Router.Navigate.Execute(analyzeViewModel);
+			}
+
+			transferDao.Save(message.Transfers.Select(t => new Transfer { Raw = t }).ToArray());
+
+			var fact = new FinancialperiodViewModelFactory(transferDao);
+
+			analyzeViewModel.FinancialPeriods =
+				new ReactiveList<IFinancialPeriodViewModel>(fact.CreatForYears(DateTime.Now.Year, DateTime.Now.Year - 1));
+		}
+
+		private readonly ITransferDao transferDao;
 	}
 }

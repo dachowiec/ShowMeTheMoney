@@ -6,6 +6,6 @@ namespace ShowMeTheMoney.Other
 	{
 		IList<Cateogry> GetAll();
 
-		void SetAll(IList<Cateogry> categories);
+		void SetAll(IList<Cateogry> newCategories);
 	}
 }

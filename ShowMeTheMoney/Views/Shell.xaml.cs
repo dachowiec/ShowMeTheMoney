@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using Caliburn.Micro;
 using ReactiveUI;
 using ShowMeTheMoney.ViewModels;
 using Splat;
@@ -13,8 +12,6 @@ namespace ShowMeTheMoney.Views
 	/// </summary>
 	public partial class Shell : IViewFor<ShellViewModel>, IScreen
 	{
-		private IEventAggregator _eventAggregator;
-
 		public Shell()
 		{
 			InitializeComponent();

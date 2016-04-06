@@ -1,9 +1,7 @@
 ﻿<Application x:Class="ShowMeTheMoney.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:views="clr-namespace:ShowMeTheMoney.Views"
-             xmlns:showMeTheMoney="clr-namespace:ShowMeTheMoney"
              xmlns:converters="clr-namespace:ShowMeTheMoney.Views.Converters"
              StartupUri="Views/Shell.xaml">
 	<Application.Resources>

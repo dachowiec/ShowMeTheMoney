@@ -29,7 +29,5 @@ namespace ShowMeTheMoney.Views
 			get { return (AnalyzeViewModel) GetValue(ViewModelProperty); }
 			set { SetValue(ViewModelProperty, value); }
 		}
-
-		private AnalyzeViewModel _viewModel;
 	}
 }

@@ -9,11 +9,12 @@ namespace ShowMeTheMoney.ViewModels
 	{
 		public FinancialPeriodViewModel(IEnumerable<Transfer> transfers,string displayName)
 		{
-			Incomes = transfers.Where(x => x.Raw.Amount >= 0).Sum(x => x.Raw.Amount);
-			Expanses = transfers.Where(x => x.Raw.Amount < 0).Sum(x => x.Raw.Amount);
-			Balance = transfers.Sum(x => x.Raw.Amount);
+			var initialContents = transfers as IList<Transfer> ?? transfers.ToList();
+			Incomes = initialContents.Where(x => x.Raw.Amount >= 0).Sum(x => x.Raw.Amount);
+			Expanses = initialContents.Where(x => x.Raw.Amount < 0).Sum(x => x.Raw.Amount);
+			Balance = initialContents.Sum(x => x.Raw.Amount);
 
-			Transfers = new ReactiveList<Transfer>(transfers);
+			Transfers = new ReactiveList<Transfer>(initialContents);
 			DisplayName = displayName;
 		}
 

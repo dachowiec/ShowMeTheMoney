@@ -11,11 +11,11 @@ namespace ShowMeTheMoney.ViewModels
 
 		public ReactiveList<IFinancialPeriodViewModel> FinancialPeriods
 		{
-			get { return _financialPeriods; }
-			set { this.RaiseAndSetIfChanged(ref _financialPeriods, value); }
+			get { return financialPeriods; }
+			set { this.RaiseAndSetIfChanged(ref financialPeriods, value); }
 		}
 
-		private ReactiveList<IFinancialPeriodViewModel> _financialPeriods;
+		private ReactiveList<IFinancialPeriodViewModel> financialPeriods;
 
 		public IScreen HostScreen { get; set; }
 

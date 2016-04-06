@@ -8,16 +8,16 @@ namespace ShowMeTheMoney.Transfers
 
 		public string Title
 		{
-			get { return _title; }
-			set { _title = value ?? string.Empty; }
+			get { return title; }
+			set { title = value ?? string.Empty; }
 		}
 
 		public decimal Amount { get; set; }
 
 		public string RecipientAccountNumber
 		{
-			get { return _recipientAccountNumber; }
-			set { _recipientAccountNumber = value ?? string.Empty; }
+			get { return recipientAccountNumber; }
+			set { recipientAccountNumber = value ?? string.Empty; }
 		}
 
 		public override bool Equals(object obj)
@@ -43,7 +43,7 @@ namespace ShowMeTheMoney.Transfers
 				& RecipientAccountNumber.GetHashCode();
 		}
 
-		private string _title = string.Empty;
-		private string _recipientAccountNumber = string.Empty;
+		private string title = string.Empty;
+		private string recipientAccountNumber = string.Empty;
 	}
 }

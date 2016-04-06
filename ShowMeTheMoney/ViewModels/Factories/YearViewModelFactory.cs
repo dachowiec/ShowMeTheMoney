@@ -7,9 +7,9 @@ namespace ShowMeTheMoney.ViewModels.Factories
 {
 	public class YearViewModelFactory : IYearViewModelFactory
 	{
-		public YearViewModelFactory(ITransferDao dao)
+		public YearViewModelFactory(ITransferDao transferDao)
 		{
-			_dao = dao;
+			this.transferDao = transferDao;
 		}
 
 		public List<YearViewModel> CreatForYears(params int[] years)
@@ -21,7 +21,7 @@ namespace ShowMeTheMoney.ViewModels.Factories
 		{
 			return new YearViewModel(year)
 			{
-				Months = _dao.GetTransfers(year, null, null)
+				Months = transferDao.GetTransfers(year, null, null)
 					.GroupBy(t => t.Raw.Date.Month)
 					.Select(CreateMonth)
 					.ToList()
@@ -33,6 +33,6 @@ namespace ShowMeTheMoney.ViewModels.Factories
 			return new MonthViewModel(monthTransfers);
 		}
 
-		private ITransferDao _dao;
+		private readonly ITransferDao transferDao;
 	}
 }

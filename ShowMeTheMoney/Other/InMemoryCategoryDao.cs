@@ -10,15 +10,15 @@ namespace ShowMeTheMoney.Other
 			return categories;
 		}
 
-		public void SetAll(IList<Cateogry> categories)
+		public void SetAll(IList<Cateogry> newCategories)
 		{
-			CheckForDuplicates(categories);
-			this.categories = categories;
+			CheckForDuplicates(newCategories);
+			categories = newCategories;
 		}
 
-		private void CheckForDuplicates(IList<Cateogry> cateogries)
+		private void CheckForDuplicates(IList<Cateogry> newCategories)
 		{
-			var duplicateCategories = cateogries
+			var duplicateCategories = newCategories
 				.GroupBy(x => x.Name)
 				.Where(x => x.Count() > 1)
 				.Select(x => x.Key).ToArray();

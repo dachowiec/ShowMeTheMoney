@@ -19,7 +19,7 @@ namespace ShowMeTheMoney.Views
 			if (exception == null)
 				return string.Empty;
 
-			return exception.ToString() + "\n\n" + GetText(exception.InnerException);
+			return exception + "\n\n" + GetText(exception.InnerException);
 		}
 	}
 }

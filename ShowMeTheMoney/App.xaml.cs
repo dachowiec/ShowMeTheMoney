@@ -12,7 +12,7 @@ using Splat;
 
 namespace ShowMeTheMoney
 {
-	public partial class App : Application
+	public partial class App
 	{
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -41,8 +41,6 @@ namespace ShowMeTheMoney
 			new StatePersister(new XmlFileStateDao()).Observe(viewSettings,
 					Ploeh.Albedo.Properties.Select(() => viewSettings.FontSize));
 			Locator.CurrentMutable.RegisterConstant(viewSettings, typeof(ViewSettings));
-
-			//SaveStoreForget.WriteToXmlFile((ViewSettings)Resources["ViewSettings"]);
 		}
 
 		private void RegisterViews()

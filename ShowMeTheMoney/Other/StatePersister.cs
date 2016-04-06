@@ -12,10 +12,10 @@ namespace ShowMeTheMoney.Other
 	{
 		public StatePersister(IStateDao stateDao)
 		{
-			_stateDao = stateDao;
+			this.stateDao = stateDao;
 		}
 
-		public void Observe<T>(T itemToObserve, params PropertyInfo[] properties) where T : INotifyPropertyChanged
+		public void Observe<T>(T itemToObserve, params PropertyInfo[] properties) where T : class, INotifyPropertyChanged
 		{
 			if (itemToObserve == null)
 				throw new ArgumentNullException("itemToObserve");
@@ -29,7 +29,7 @@ namespace ShowMeTheMoney.Other
 				if (properties.All(p => p.Name != args.PropertyName))
 					return;
 
-				_stateDao.Save(new StateDto
+				stateDao.Save(new StateDto
 				{
 					Name = typeof(T).Name,
 					PropertyValues = properties
@@ -42,7 +42,7 @@ namespace ShowMeTheMoney.Other
 
 		private void TryRestore<T>(object itemToObserve, IEnumerable<PropertyInfo> propertiesToObserve)
 		{
-			var state = _stateDao.Get<T>();
+			var state = stateDao.Get<T>();
 			if (state == null)
 				return;
 
@@ -54,7 +54,7 @@ namespace ShowMeTheMoney.Other
 			}
 		}
 
-		private readonly IStateDao _stateDao;
+		private readonly IStateDao stateDao;
 	}
 
 	public interface IStateDao
@@ -115,10 +115,10 @@ namespace ShowMeTheMoney.Other
 
 		public List<Tuple<string, object>> PropertyValues
 		{
-			get { return _propertyValues ?? new List<Tuple<string, object>>(); }
-			set { _propertyValues = value; }
+			get { return propertyValues ?? new List<Tuple<string, object>>(); }
+			set { propertyValues = value; }
 		}
 
-		private List<Tuple<string, object>> _propertyValues;
+		private List<Tuple<string, object>> propertyValues;
 	}
 }

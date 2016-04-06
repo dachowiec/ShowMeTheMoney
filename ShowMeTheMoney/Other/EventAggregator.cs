@@ -35,7 +35,7 @@
 		/// </summary>
 		/// <param name = "message">The message instance.</param>
 		/// <param name = "marshal">Allows the publisher to provide a custom thread marshaller for the message publication.</param>
-		void Publish(object message, Action<System.Action> marshal);
+		void Publish(object message, Action<Action> marshal);
 	}
 
 	/// <summary>
@@ -108,7 +108,7 @@
 		/// </summary>
 		/// <param name = "message">The message instance.</param>
 		/// <param name = "marshal">Allows the publisher to provide a custom thread marshaller for the message publication.</param>
-		public virtual void Publish(object message, Action<System.Action> marshal)
+		public virtual void Publish(object message, Action<Action> marshal)
 		{
 			if (message == null)
 			{
@@ -163,7 +163,7 @@
 				foreach (var @interface in interfaces)
 				{
 					var type = @interface.GetGenericArguments()[0];
-					var method = @interface.GetMethod("Handle", new Type[] { type });
+					var method = @interface.GetMethod("Handle", new [] { type });
 
 					if (method != null)
 					{
