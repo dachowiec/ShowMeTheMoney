@@ -15,8 +15,8 @@ namespace ShowMeTheMoney.Tests.Other
 	{
 		public StatePersisterTest()
 		{
-			_stateDao = A.Fake<IStateDao>();
-			_statePersister = new StatePersister(_stateDao);
+			stateDao = A.Fake<IStateDao>();
+			statePersister = new StatePersister(stateDao);
 		}
 
 		[Fact]
@@ -36,21 +36,21 @@ namespace ShowMeTheMoney.Tests.Other
 		[Fact]
 		public void CannotPassNull()
 		{
-			_statePersister.Invoking(x => x.Observe((Foo)null))
+			statePersister.Invoking(x => x.Observe((Foo)null))
 				.ShouldThrow<ArgumentNullException>();
 		}
 
 		[Fact]
 		public void MustPassPropertiesToPersist()
 		{
-			_statePersister.Invoking(x => x.Observe(new Foo()))
+			statePersister.Invoking(x => x.Observe(new Foo()))
 				.ShouldThrow<ArgumentException>().WithMessage("No properties passed");
 		}
 
 		[Fact]
 		public void RestoresValue()
 		{
-			A.CallTo(() => _stateDao.Get<Foo>())
+			A.CallTo(() => stateDao.Get<Foo>())
 				.Returns(new StateDto
 					{
 						Name = "Foo",
@@ -58,7 +58,7 @@ namespace ShowMeTheMoney.Tests.Other
 					});
 
 			var itemToObserve = new Foo();
-			_statePersister.Observe(itemToObserve, Properties.Select(() => itemToObserve.Text));
+			statePersister.Observe(itemToObserve, Properties.Select(() => itemToObserve.Text));
 
 			itemToObserve.Text.Should().Be("karol");
 		}
@@ -67,25 +67,25 @@ namespace ShowMeTheMoney.Tests.Other
 		public void StoresValueOnValueChange()
 		{
 			var itemToObserve = new Foo();
-			_statePersister.Observe(itemToObserve, Properties.Select(() => itemToObserve.Text));
+			statePersister.Observe(itemToObserve, Properties.Select(() => itemToObserve.Text));
 
 			itemToObserve.Text = "włodek";
 
-			A.CallTo(() => _stateDao.Save(A<StateDto>._)).MustHaveHappened();
+			A.CallTo(() => stateDao.Save(A<StateDto>._)).MustHaveHappened();
 		}
 
-		private readonly StatePersister _statePersister;
-		private readonly IStateDao _stateDao;
+		private readonly StatePersister statePersister;
+		private readonly IStateDao stateDao;
 	}
 
 	public class Foo : ReactiveObject
 	{
-		private string _text;
+		private string text;
 
 		public string Text
 		{
-			get { return _text; }
-			set { this.RaiseAndSetIfChanged(ref _text, value); }
+			get { return text; }
+			set { this.RaiseAndSetIfChanged(ref text, value); }
 		}
 
 	}

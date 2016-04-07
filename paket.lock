@@ -30,6 +30,7 @@ NUGET
     Rx-Xaml (2.2.5)
       Rx-Main (>= 2.2.5)
     Splat (1.6.2)
+    WpfAnimatedGif (1.4.14)
     xunit (2.1.0)
       xunit.assert (2.1.0)
       xunit.core (2.1.0)

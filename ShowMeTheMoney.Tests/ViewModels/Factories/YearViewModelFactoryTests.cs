@@ -14,16 +14,16 @@ namespace ShowMeTheMoney.Tests.ViewModels.Factories
 	{
 		public YearViewModelFactoryTests()
 		{
-			_dao = A.Fake<ITransferDao>();
-			A.CallTo(() => _dao.GetTransfers(2000, null, null))
-				.ReturnsLazily(() => _transactions2000);
-			_sut = new YearViewModelFactory(_dao);
+			transferDao = A.Fake<ITransferDao>();
+			A.CallTo(() => transferDao.GetTransfers(2000, null, null))
+				.ReturnsLazily(() => transactions2000);
+			yearViewModelFactory = new YearViewModelFactory(transferDao);
 		}
 
 		[Fact]
 		public void Create_Empty()
 		{
-			var result = _sut.CreatForYears();
+			var result = yearViewModelFactory.CreatForYears();
 
 			result.Should().BeEmpty();
 		}
@@ -31,7 +31,7 @@ namespace ShowMeTheMoney.Tests.ViewModels.Factories
 		[Fact]
 		public void Create_SingleEmptyYear()
 		{
-			var result = _sut.CreatForYears(1900);
+			var result = yearViewModelFactory.CreatForYears(1900);
 
 			result.Should().HaveCount(1);
 			result.First().Year.Should().Be(1900);
@@ -40,7 +40,7 @@ namespace ShowMeTheMoney.Tests.ViewModels.Factories
 		[Fact]
 		public void Create_WithMonths()
 		{
-			_transactions2000 = new List<Transfer>
+			transactions2000 = new List<Transfer>
 			{
 				new Transfer
 				{
@@ -52,16 +52,16 @@ namespace ShowMeTheMoney.Tests.ViewModels.Factories
 				},
 			};
 
-			var result = _sut.CreatForYears(2000);
+			var result = yearViewModelFactory.CreatForYears(2000);
 
 			var yearViewModel = result.First();
 
-			yearViewModel.Months.Should().HaveCount(_transactions2000.Count);
+			yearViewModel.Months.Should().HaveCount(transactions2000.Count);
 
 		}
 
-		private readonly YearViewModelFactory _sut;
-		private readonly ITransferDao _dao;
-		private List<Transfer> _transactions2000 = new List<Transfer>();
+		private readonly YearViewModelFactory yearViewModelFactory;
+		private readonly ITransferDao transferDao;
+		private List<Transfer> transactions2000 = new List<Transfer>();
 	}
 }

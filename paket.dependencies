@@ -10,3 +10,4 @@ nuget ReactiveUI
 nuget Autofac
 nuget FakeItEasy
 nuget Albedo
+nuget WpfAnimatedGif
