@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
+using ShowMeTheMoney.Model;
 using ShowMeTheMoney.Other;
 using Xunit;
 
@@ -24,7 +25,7 @@ namespace ShowMeTheMoney.Tests.Other
 		public void SaveAll_ReplacesPreviuos()
 		{
 			inMemoryCategoryDao.SetAll(GetSampleCategoryList());
-			inMemoryCategoryDao.SetAll(new List<Cateogry>());
+			inMemoryCategoryDao.SetAll(new List<Category>());
 
 			inMemoryCategoryDao.GetAll().Should().HaveCount(0);
 		}
@@ -32,13 +33,13 @@ namespace ShowMeTheMoney.Tests.Other
 		[Fact]
 		public void SaveAll_DoesNotAcceptDuplicateCategoryNames()
 		{
-			Assert.Throws<DuplicateCategoryException>(() => inMemoryCategoryDao.SetAll(new List<Cateogry>
+			Assert.Throws<DuplicateCategoryException>(() => inMemoryCategoryDao.SetAll(new List<Category>
 			{
-				new Cateogry
+				new Category
 				{
 					Name = "a",
 				},
-				new Cateogry
+				new Category
 				{
 					Name = "a"
 				}
@@ -47,9 +48,9 @@ namespace ShowMeTheMoney.Tests.Other
 
 		private readonly InMemoryCategoryDao inMemoryCategoryDao = new InMemoryCategoryDao();
 
-		private static List<Cateogry> GetSampleCategoryList()
+		private static List<Category> GetSampleCategoryList()
 		{
-			return new List<Cateogry> { new Cateogry { Name = "a" }, new Cateogry { Name = "b" } };
+			return new List<Category> { new Category { Name = "a" }, new Category { Name = "b" } };
 		}
 	}
 }

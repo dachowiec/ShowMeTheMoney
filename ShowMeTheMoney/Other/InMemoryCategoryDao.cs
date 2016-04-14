@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ShowMeTheMoney.Model;
 
 namespace ShowMeTheMoney.Other
 {
 	public class InMemoryCategoryDao : ICategoryDao
 	{
-		public IList<Cateogry> GetAll()
+		public IList<Category> GetAll()
 		{
 			return categories;
 		}
 
-		public void SetAll(IList<Cateogry> newCategories)
+		public void SetAll(IList<Category> newCategories)
 		{
 			CheckForDuplicates(newCategories);
 			categories = newCategories;
 		}
 
-		private void CheckForDuplicates(IList<Cateogry> newCategories)
+		private void CheckForDuplicates(IList<Category> newCategories)
 		{
 			var duplicateCategories = newCategories
 				.GroupBy(x => x.Name)
@@ -28,6 +29,6 @@ namespace ShowMeTheMoney.Other
 
 		}
 
-		private IList<Cateogry> categories = new List<Cateogry>();
+		private IList<Category> categories = new List<Category>();
 	}
 }

@@ -31,7 +31,7 @@ namespace ShowMeTheMoney.ViewModels
 			EditCategories = ReactiveCommand.Create();
 			EditCategories
 				.ObserveOn(RxApp.MainThreadScheduler)
-				.Subscribe(_ => Router.Navigate.Execute(new CategoriesViewModel()));
+				.Subscribe(_ => Router.Navigate.Execute(new CategoriesViewModel(this)));
 
 			transferDao = Locator.Current.GetService<ITransferDao>();
 		}

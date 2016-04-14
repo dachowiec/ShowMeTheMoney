@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using ShowMeTheMoney.Model;
 
 namespace ShowMeTheMoney.Other
 {
 	public interface ICategoryDao
 	{
-		IList<Cateogry> GetAll();
+		IList<Category> GetAll();
 
-		void SetAll(IList<Cateogry> newCategories);
+		void SetAll(IList<Category> newCategories);
 	}
 }

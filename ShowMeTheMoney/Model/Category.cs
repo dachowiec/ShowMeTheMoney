@@ -1,8 +1,8 @@
 ﻿using System.Windows.Media;
 
-namespace ShowMeTheMoney.Other
+namespace ShowMeTheMoney.Model
 {
-	public class Cateogry
+	public class Category
 	{
 		public string Name { get; set; }
 

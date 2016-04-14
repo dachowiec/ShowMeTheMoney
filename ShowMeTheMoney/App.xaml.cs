@@ -2,6 +2,7 @@
 using System.Windows;
 using Caliburn.Micro;
 using ReactiveUI;
+using ShowMeTheMoney.Model;
 using ShowMeTheMoney.Other;
 using ShowMeTheMoney.Transfers;
 using ShowMeTheMoney.Transfers.Factories;
@@ -32,11 +33,12 @@ namespace ShowMeTheMoney
 			Locator.CurrentMutable.Register(() => new CsvReaderTransactionDialog(), typeof(CsvReaderTransactionDialog));
 			Locator.CurrentMutable.Register(() => new SelectTransactionReaderDialogViewModel(), typeof(SelectTransactionReaderDialogViewModel));
 
+			Locator.CurrentMutable.RegisterConstant(new Context(), typeof(Context));
 			Locator.CurrentMutable.RegisterConstant(new EventAggregator(), typeof(IEventAggregator));
 
 			Locator.CurrentMutable.RegisterConstant(new InMemoryTransferDao(), typeof(ITransferDao));
 			Locator.CurrentMutable.RegisterConstant(new InMemoryCategoryDao(), typeof(ICategoryDao));
-			
+
 			var viewSettings = (ViewSettings)Resources["ViewSettings"];
 			new StatePersister(new XmlFileStateDao()).Observe(viewSettings,
 					Ploeh.Albedo.Properties.Select(() => viewSettings.FontSize));
