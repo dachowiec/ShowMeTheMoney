@@ -17,7 +17,7 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 		<TextBlock>
-			<Hyperlink >
+			<Hyperlink x:Name="OpenHyperlink" >
 				<TextBlock Text="Otwórz"  Foreground="SteelBlue" />
 			</Hyperlink>
 		</TextBlock>

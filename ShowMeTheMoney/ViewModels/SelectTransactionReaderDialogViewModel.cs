@@ -12,7 +12,7 @@ using Splat;
 
 namespace ShowMeTheMoney.ViewModels
 {
-	public class SelectTransactionReaderDialogViewModel : ReactiveObject
+	public class SelectTransactionReaderDialogViewModel : ReactiveObject, IRoutableViewModel
 	{
 		public SelectTransactionReaderDialogViewModel(IList<ITransferReaderFactory> readers = null,
 			IEventAggregator eventAggregator = null)
@@ -66,5 +66,7 @@ namespace ShowMeTheMoney.ViewModels
 
 		private ITransferReaderFactory selectedReader;
 		private string selectedFile;
+		public string UrlPathSegment { get; private set; }
+		public IScreen HostScreen { get; set; }
 	}
 }

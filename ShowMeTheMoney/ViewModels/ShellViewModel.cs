@@ -18,23 +18,22 @@ namespace ShowMeTheMoney.ViewModels
 		{
 			Router = new RoutingState();
 
-			Router.Navigate.Execute(new EncouragementViewModel());
+			Router.Navigate.Execute(new EncouragementViewModel(this));
 
 			var eventAggregator = Locator.Current.GetService<IEventAggregator>();
 			eventAggregator.Subscribe(this);
 
-			OpenFileDialog = ReactiveCommand.Create();
-			OpenFileDialog
-				.ObserveOn(RxApp.MainThreadScheduler)
-				.Subscribe(_ => Locator.Current.GetService<CsvReaderTransactionDialog>().ShowDialog());
+			OpenFile = ReactiveCommand.Create();
+			OpenFile
+				.SubscribeOn(RxApp.TaskpoolScheduler)
+				.Subscribe(_ => Router.Navigate.Execute(new SelectTransactionReaderDialogViewModel()));
 
 			transferDao = Locator.Current.GetService<ITransferDao>();
 		}
 
-		public ReactiveCommand<object> OpenFileDialog { get; private set; }
+		public ReactiveCommand<object> OpenFile { get; private set; }
 
 		public RoutingState Router { get; private set; }
-
 
 		public void Handle(NewTransfers message)
 		{

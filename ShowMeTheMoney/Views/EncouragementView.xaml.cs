@@ -11,6 +11,7 @@ namespace ShowMeTheMoney.Views
 		public EncouragementView()
 		{
 			InitializeComponent();
+			this.BindCommand(ViewModel, vm => vm.OpenFile, v => v.OpenHyperlink);
 		}
 
 		object IViewFor.ViewModel

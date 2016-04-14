@@ -66,10 +66,6 @@
     <Folder Include="Transfers\Factories\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Hazzik.Maybe, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Maybe.1.2.0\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Hazzik.Maybe.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Ploeh.Albedo">
       <HintPath>..\packages\Albedo\lib\net35\Ploeh.Albedo.dll</HintPath>
     </Reference>

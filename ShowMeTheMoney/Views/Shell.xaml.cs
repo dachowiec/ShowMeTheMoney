@@ -21,7 +21,7 @@ namespace ShowMeTheMoney.Views
 
 			Router = new RoutingState();
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
-			this.BindCommand(ViewModel, vm => vm.OpenFileDialog, v => v.openFile);
+			this.BindCommand(ViewModel, vm => vm.OpenFile, v => v.openFile);
 			this.Bind(ViewModel, vm => vm.Router, v => v.viewHost.Router);
 
 			MouseWheel += Zoom_MouseWheel;

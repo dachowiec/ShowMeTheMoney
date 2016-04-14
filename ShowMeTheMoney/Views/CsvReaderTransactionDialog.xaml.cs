@@ -16,7 +16,7 @@ namespace ShowMeTheMoney.Views
 			InitializeComponent();
 
 			ViewModel = shellViewModel ?? Locator.CurrentMutable.GetService<SelectTransactionReaderDialogViewModel>();
-			ViewModel.RequestClose += (sender, args) => Close();
+			//ViewModel.RequestClose += (sender, args) => Close();
 			this.OneWayBind(ViewModel, vm => vm.Readers, v => v.readers.ItemsSource);
 			this.Bind(ViewModel, vm => vm.SelectedReader, v => v.readers.SelectedItem);
 			this.Bind(ViewModel, vm => vm.SelectedFile, v => v.selectedFile.Text);
@@ -40,9 +40,9 @@ namespace ShowMeTheMoney.Views
 			}
 		}
 
-		private void Close_OnClick(object sender, RoutedEventArgs e)
-		{
-			Close();
-		}
+		//private void Close_OnClick(object sender, RoutedEventArgs e)
+		//{
+		//	Close();
+		//}
 	}
 }
