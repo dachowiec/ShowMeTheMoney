@@ -28,17 +28,10 @@ namespace ShowMeTheMoney.ViewModels
 				.ObserveOn(RxApp.MainThreadScheduler)
 				.Subscribe(_ => Locator.Current.GetService<CsvReaderTransactionDialog>().ShowDialog());
 
-			EditCategories = ReactiveCommand.Create();
-			EditCategories
-				.ObserveOn(RxApp.MainThreadScheduler)
-				.Subscribe(_ => Router.Navigate.Execute(new CategoriesViewModel(this)));
-
 			transferDao = Locator.Current.GetService<ITransferDao>();
 		}
 
 		public ReactiveCommand<object> OpenFileDialog { get; private set; }
-
-		public ReactiveCommand<object> EditCategories { get; private set; }
 
 		public RoutingState Router { get; private set; }
 
